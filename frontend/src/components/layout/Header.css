@@ -1,0 +1,133 @@
+.header {
+  height: 70px;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+[data-theme="dark"] .header {
+  background-color: #1e293b;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.menu-btn {
+  color: #333333;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.header-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #333333;
+  letter-spacing: 0;
+}
+
+[data-theme="dark"] .header-title {
+  color: #ffffff;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.header-right .btn-icon {
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.text-muted {
+  color: #74788d;
+}
+
+[data-theme="dark"] .text-muted {
+  color: #94a3b8;
+}
+
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+}
+
+.flag-img {
+  width: 20px;
+  height: 14px;
+  border-radius: 2px;
+}
+
+.lang-text {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #74788d;
+}
+
+.dropdown-icon {
+  color: #74788d;
+}
+
+[data-theme="dark"] .lang-text, [data-theme="dark"] .dropdown-icon {
+  color: #94a3b8;
+}
+
+.notification-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background-color: #f06292;
+  color: white;
+  width: 15px;
+  height: 15px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: transparent;
+  gap: 0.35rem;
+  margin: 0 0.5rem;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
