@@ -1,56 +1,69 @@
 import { useFinance } from '../../context/FinanceContext';
-import { Menu, Search, Maximize, Bell, Settings, ChevronDown } from 'lucide-react';
+import { Menu, Bell, Download, ChevronDown } from 'lucide-react';
 import './Header.css';
 
-const Header = () => {
-  const { role, setRole } = useFinance();
+const Header = ({ toggleSidebar }) => {
+  const { role, setRole, transactions } = useFinance();
+
+  const toggleRole = () => {
+    setRole(role === 'admin' ? 'viewer' : 'admin');
+  };
+
+  const exportAllToCSV = () => {
+    const headers = ['Date', 'Description', 'Category', 'Type', 'Amount'];
+    const csvContent = [
+      headers.join(','),
+      ...transactions.map(tx => 
+        `"${tx.date}","${tx.description.replace(/"/g, '""')}","${tx.category}","${tx.type}",${tx.amount}`
+      )
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `all_transactions.csv`;
+    link.click();
+  };
 
   return (
     <header className="header">
       <div className="header-left">
-        <button className="btn-icon menu-btn">
+        <button className="btn-icon menu-btn" onClick={toggleSidebar}>
           <Menu size={22} color="#333333" strokeWidth={2} />
         </button>
         <span className="header-title">Dashboard</span>
       </div>
-      
-      <div className="header-right">
-        <button className="btn-icon text-muted">
-          <Search size={18} strokeWidth={2} />
-        </button>
-        
-        <div className="role-switcher" style={{ display: 'flex', alignItems: 'center', backgroundColor: 'var(--bg-secondary)', padding: '4px 10px', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+
+      <div className="header-right custom-header-group">
+        <div className="role-selector-clean">
           <select 
             value={role} 
             onChange={(e) => setRole(e.target.value)}
-            style={{ background: 'transparent', border: 'none', color: 'var(--text-primary)', outline: 'none', cursor: 'pointer', fontWeight: 500 }}
           >
             <option value="viewer">Viewer Mode</option>
             <option value="admin">Admin Mode</option>
           </select>
+          <ChevronDown size={16} className="chevron-icon" />
         </div>
-        <button className="btn-icon text-muted">
-          <Maximize size={18} strokeWidth={2} />
+
+        <div className="live-badge">
+          <span className="live-dot"></span>
+          <span>Live</span>
+        </div>
+        
+        <button className="btn-icon header-dark-btn" onClick={exportAllToCSV} title="Export CSV">
+          <Download size={18} color="#8c9aab" />
         </button>
         
         <div className="notification-wrapper">
-          <button className="btn-icon text-muted">
-            <Bell size={18} strokeWidth={2} className="bell-icon" />
+          <button className="btn-icon header-dark-btn">
+            <Bell size={18} color="#8c9aab" />
           </button>
-          <span className="notification-badge">3</span>
         </div>
         
-        <div className="user-profile">
-          <img 
-            src="https://randomuser.me/api/portraits/men/32.jpg" 
-            alt="User" 
-            className="avatar" 
-          />
+        <div className={`role-avatar-circle ${role === 'admin' ? 'admin' : 'viewer'}`} onClick={toggleRole} title="Toggle Role">
+          <span>{role === 'admin' ? 'A' : 'V'}</span>
         </div>
-        
-        <button className="btn-icon text-muted">
-          <Settings size={18} strokeWidth={2} />
-        </button>
       </div>
     </header>
   );

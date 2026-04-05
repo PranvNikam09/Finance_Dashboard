@@ -96,3 +96,16 @@
   padding-top: 1.5rem;
   border-top: 1px solid var(--border-color);
 }
+
+@media (max-width: 640px) {
+  .modal-content {
+    margin: 1rem;
+    padding: 1.5rem;
+    max-height: calc(100vh - 2rem);
+    width: auto;
+  }
+  
+  .form-row.split {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useFinance } from '../../context/FinanceContext';
-import { Plus, Search, Filter, Trash2, ArrowUpCircle, ArrowDownCircle } from 'lucide-react';
+import { Plus, Search, Filter, Trash2, ArrowUpCircle, ArrowDownCircle, Download } from 'lucide-react';
 import TransactionModal from './TransactionModal';
 import { format, parseISO } from 'date-fns';
 import './Transactions.css';
@@ -27,6 +27,22 @@ const Transactions = () => {
 
   const formatCurrency = (val) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Math.abs(val));
 
+  const exportToCSV = () => {
+    const headers = ['Date', 'Description', 'Category', 'Type', 'Amount'];
+    const csvContent = [
+      headers.join(','),
+      ...filteredTransactions.map(tx => 
+        `"${format(parseISO(tx.date), 'yyyy-MM-dd')}","${tx.description.replace(/"/g, '""')}","${tx.category}","${tx.type}",${tx.amount}`
+      )
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `transactions_${format(new Date(), 'yyyy-MM-dd')}.csv`;
+    link.click();
+  };
+
   return (
     <div className="transactions-page">
       <div className="page-header flex-between">
@@ -34,12 +50,18 @@ const Transactions = () => {
           <h1>Transactions</h1>
           <p className="subtitle">Manage and track your financial activities.</p>
         </div>
-        {role === 'admin' && (
-          <button className="btn btn-primary animate-fade-in" onClick={() => setIsModalOpen(true)}>
-            <Plus size={18} />
-            <span>Add Transaction</span>
+        <div style={{ display: 'flex', gap: '1rem' }}>
+          <button className="btn btn-secondary animate-fade-in" onClick={exportToCSV}>
+            <Download size={18} />
+            <span className="hide-on-mobile">Export CSV</span>
           </button>
-        )}
+          {role === 'admin' && (
+            <button className="btn btn-primary animate-fade-in" onClick={() => setIsModalOpen(true)}>
+              <Plus size={18} />
+              <span>Add Transaction</span>
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="controls-bar glass-card">

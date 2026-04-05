@@ -1,48 +1,60 @@
 import { NavLink } from 'react-router-dom';
-import { 
-  Monitor, 
-  Briefcase, 
-  Mail, 
-  Calendar, 
-  CreditCard, 
-  FileText, 
-  Box, 
-  LineChart, 
-  List, 
+import {
+  Monitor,
+  Briefcase,
+  Mail,
+  Calendar,
+  CreditCard,
+  FileText,
+  Box,
+  LineChart,
+  List,
   Map as MapIcon,
   ChevronRight,
-  Aperture
+  Aperture,
+  Sun,
+  Moon
 } from 'lucide-react';
+import { useTheme } from '../../context/ThemeContext';
 import './Sidebar.css';
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, onClose }) => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
       <div className="sidebar-header">
         <div className="logo">
           <div className="logo-icon">
             <Aperture size={24} color="#ffffff" strokeWidth={2} />
           </div>
-          <h2>FONIK</h2>
+          <h2>FINANCE</h2>
         </div>
       </div>
 
       <div className="sidebar-scrollable">
         <div className="nav-section-title">Main</div>
         <nav className="sidebar-nav">
-          <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+          <NavLink to="/" onClick={onClose} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
             <Monitor size={18} className="icon" />
             <span>Dashboard</span>
           </NavLink>
-          <NavLink to="/transactions" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+          <NavLink to="/transactions" onClick={onClose} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
             <List size={18} className="icon" />
             <span>Transactions</span>
           </NavLink>
-          <NavLink to="/insights" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+          <NavLink to="/insights" onClick={onClose} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
             <LineChart size={18} className="icon" />
             <span>Insights</span>
           </NavLink>
         </nav>
+      </div>
+
+      <div className="sidebar-footer">
+        <button className="theme-toggle" onClick={toggleTheme}>
+          {theme === 'dark' ? <Sun size={18} className="icon" color="#adb5bd" /> : <Moon size={18} className="icon" color="#adb5bd" />}
+          <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+        </button>
       </div>
     </aside>
   );
