@@ -134,6 +134,10 @@ input, select {
   transition: margin-left var(--transition-speed) ease;
 }
 
+.main-content.collapsed {
+  margin-left: 70px;
+}
+
 /* Sidebar Overlay for Mobile */
 .sidebar-overlay {
   position: fixed;
