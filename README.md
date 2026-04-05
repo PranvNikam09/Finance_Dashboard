@@ -1,4 +1,4 @@
-# 📊 Finance Dashboard
+#  Finance Dashboard
 
 A modern, highly responsive financial tracking dashboard leveraging a robust full-stack architecture. This application provides users with an intuitive interface to manage, analyze, and visualize their personal or business transactions.
 
@@ -11,7 +11,7 @@ A modern, highly responsive financial tracking dashboard leveraging a robust ful
 * **Role-Based Simulation**: UI seamlessly switches between "Viewer" (Read-only) and "Admin" (Add/Delete entries) modes.
 * **Sleek UI/UX**: Custom themed fluid interface matching modern aesthetic standards with CSS Custom Properties and subtle micro-animations.
 
-## 🚀 Technologies Used
+##  Technologies Used
 
 **Frontend (`/frontend`)**
 * **Framework:** React 19 (via Vite)
@@ -25,7 +25,7 @@ A modern, highly responsive financial tracking dashboard leveraging a robust ful
 * **Framework:** Laravel 12 (PHP 8.2+)
 * **Database:** SQLite (default) / MySQL
 
-## 🛠️ Installation & Setup
+##  Installation & Setup
 
 This repository is split into two distinct environments: the Laravel Backend and the React Frontend. You will need to run both to fully utilize the application.
 
