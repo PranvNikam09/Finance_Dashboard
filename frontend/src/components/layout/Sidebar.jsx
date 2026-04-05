@@ -34,52 +34,15 @@ const Sidebar = () => {
             <Monitor size={18} className="icon" />
             <span>Dashboard</span>
           </NavLink>
-          <div className="nav-link">
-            <Briefcase size={18} className="icon" />
-            <span>User Interface</span>
-            <ChevronRight size={16} className="chevron" />
-          </div>
-          <div className="nav-link">
-            <Mail size={18} className="icon" />
-            <span>Email</span>
-            <ChevronRight size={16} className="chevron" />
-          </div>
-          <div className="nav-link">
-            <Calendar size={18} className="icon" />
-            <span>Calendar</span>
-          </div>
-          <div className="nav-link">
-            <CreditCard size={18} className="icon" />
-            <span>Contact</span>
-            <ChevronRight size={16} className="chevron" />
-          </div>
-          <div className="nav-link">
-            <FileText size={18} className="icon" />
-            <span>Forms</span>
-            <span className="badge badge-green">7</span>
-          </div>
-          <div className="nav-link">
-            <Box size={18} className="icon" />
-            <span>Icons</span>
-            <ChevronRight size={16} className="chevron" />
-          </div>
-          <div className="nav-link">
-            <LineChart size={18} className="icon" />
-            <span>Charts</span>
-            <ChevronRight size={16} className="chevron" />
-          </div>
-          <div className="nav-link">
+          <NavLink to="/transactions" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
             <List size={18} className="icon" />
-            <span>Tables</span>
-            <ChevronRight size={16} className="chevron" />
-          </div>
-          <div className="nav-link">
-            <MapIcon size={18} className="icon" />
-            <span>Maps</span>
-            <span className="badge badge-red">2</span>
-          </div>
+            <span>Transactions</span>
+          </NavLink>
+          <NavLink to="/insights" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+            <LineChart size={18} className="icon" />
+            <span>Insights</span>
+          </NavLink>
         </nav>
-        <div className="nav-section-title" style={{ paddingBottom: '2rem' }}>Extras</div>
       </div>
     </aside>
   );

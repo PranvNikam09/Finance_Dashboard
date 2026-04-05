@@ -3,7 +3,7 @@ import { Menu, Search, Maximize, Bell, Settings, ChevronDown } from 'lucide-reac
 import './Header.css';
 
 const Header = () => {
-  const { role } = useFinance();
+  const { role, setRole } = useFinance();
 
   return (
     <header className="header">
@@ -19,12 +19,16 @@ const Header = () => {
           <Search size={18} strokeWidth={2} />
         </button>
         
-        <div className="lang-switcher">
-          <img src="https://flagcdn.com/w20/us.png" alt="US" className="flag-img" />
-          <span className="lang-text">English</span>
-          <ChevronDown size={14} strokeWidth={2.5} className="dropdown-icon" />
+        <div className="role-switcher" style={{ display: 'flex', alignItems: 'center', backgroundColor: 'var(--bg-secondary)', padding: '4px 10px', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+          <select 
+            value={role} 
+            onChange={(e) => setRole(e.target.value)}
+            style={{ background: 'transparent', border: 'none', color: 'var(--text-primary)', outline: 'none', cursor: 'pointer', fontWeight: 500 }}
+          >
+            <option value="viewer">Viewer Mode</option>
+            <option value="admin">Admin Mode</option>
+          </select>
         </div>
-        
         <button className="btn-icon text-muted">
           <Maximize size={18} strokeWidth={2} />
         </button>
