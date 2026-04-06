@@ -21,41 +21,17 @@ A modern, highly responsive financial tracking dashboard leveraging a robust ful
 * **Charts/Analytics:** Recharts
 * **Dates/Times:** date-fns
 
-**Backend (`/backend`)**
-* **Framework:** Laravel 12 (PHP 8.2+)
-* **Database:** SQLite (default) / MySQL
-
 ##  Installation & Setup
 
 This repository is split into two distinct environments: the Laravel Backend and the React Frontend. You will need to run both to fully utilize the application.
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/finance-dashboard.git
+git clone https://github.com/PranvNikam09/Finance_Dashboard.git
 cd finance-dashboard
 ```
 
-### 2. Backend Setup (Laravel)
-Open a new terminal window and navigate to the backend service.
-```bash
-cd backend
-
-# Install PHP dependencies
-composer install
-
-# Set up environment variables
-cp .env.example .env
-
-# Generate application key & migrate database
-php artisan key:generate
-php artisan migrate
-
-# Start the Laravel API Server 
-php artisan serve
-```
-*The backend API will run on `http://127.0.0.1:8000`*
-
-### 3. Frontend Setup (React / Vite)
+### 2. Frontend Setup (React / Vite)
 Open a second terminal window and navigate to the frontend service.
 ```bash
 cd frontend
@@ -72,11 +48,6 @@ npm run dev
 
 ```text
 Finance_Dashboard/
-├── backend/             # Laravel API Service
-│   ├── app/             # Models and Controllers
-│   ├── database/        # Migrations and Seeders
-│   ├── routes/          # API & Web route definitions
-│   └── .env             # Environment configuration
 │
 ├── frontend/            # React UI Client
 │   ├── src/
