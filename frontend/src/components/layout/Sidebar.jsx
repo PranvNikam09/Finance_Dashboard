@@ -22,7 +22,7 @@ const Sidebar = ({ isOpen, isCollapsed, onClose }) => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <aside className={`sidebar ${isOpen ? 'open' : ''} ${isCollapsed ? 'collapsed' : ''}`}>
+    <aside className={`sidebar fixed ${isOpen ? 'open' : ''} ${isCollapsed ? 'collapsed' : ''}`}>
       <div className="sidebar-header">
         <div className="logo">
           <div className="logo-icon">
